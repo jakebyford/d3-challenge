@@ -27,3 +27,11 @@ var svg = d3.select(".chart")
 d3.csv("assets/data/data.csv").then(function(demoData) {
     console.log(demoData);
 });
+
+// Step 1: Parse Data from strings to numbers
+
+demoData.forEach(data => {
+    data.income = +data.income;
+    data.obesity = +data.obesity;
+});
+
