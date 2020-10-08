@@ -1,7 +1,6 @@
 // @TODO: YOUR CODE HERE!
-// @TODO: YOUR CODE HERE!
 var svgWidth = 960;
-var svgHeight = 500;
+var svgHeight = 600;
 
 var margin = {
     top: 20,
@@ -30,8 +29,17 @@ d3.csv("assets/data/data.csv").then(function(demoData) {
 
 // Step 1: Parse Data from strings to numbers
 
-demoData.forEach(data => {
-    data.income = +data.income;
-    data.obesity = +data.obesity;
-});
+  demoData.forEach(function(data) {
+      data.income = +data.income;
+      data.obesity = +data.obesity;
+  });
 
+// Step 2: Create Scale functions
+
+  var xLinearScale = d3.scaleLinear()
+      .domain([20, d3.max(demoData, d => d.income)])
+      .range([0, width]);
+  
+  var yLinearScale = d3.scaleLinear()
+      .domain([0, d3.max(demoData, d => d.obesity)])
+      .range([height, 0]);
